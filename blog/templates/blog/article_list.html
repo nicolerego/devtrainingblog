@@ -5,5 +5,21 @@
 </head>
 <body>
 	<h2>Article List</h2>
+	<h3>Category: Code</h3>
+	{% for CodeArticle in CodeArticles %}
+		<div>
+			<h3><a href="{% url 'CodePostDetails' CodeArticle.id %}">{{ CodeArticle.title }}</a></h3>
+			<p> Published {{ CodeArticle.published_on }}</p>
+			<p> {{ CodeArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
+		</div>
+	{% endfor %}
+	<h3>Category: Design</h3>
+	{% for DesignArticle in DesignArticles %}
+		<div>
+			<h3><a href="{% url 'DesignPostDetails' DesignArticle.id %}">{{ DesignArticle.title }}</a></h3>
+			<p> Published {{ DesignArticle.published_on }}</p>
+			<p> {{ DesignArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
+		</div>
+	{% endfor %}
 </body>
 </html>
