@@ -1,4 +1,8 @@
 from django.contrib import admin
-from .models import Article
+from .models import ArticleInfo
+from .models import CodePost
+from .models import DesignPost
 
-admin.site.register(Article)
+admin.site.register(CodePost)
+admin.site.register(DesignPost)
+
