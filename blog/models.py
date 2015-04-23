@@ -10,6 +10,7 @@ class ArticleInfo(models.Model):
 	author = models.ForeignKey('auth.User')
 	created_on = models.DateTimeField(default=timezone.now)
 	published_on = models.DateTimeField(blank=True, null=True)
+	status = models.TextField(default='unpublished')
 
 	def publish(self):
 		'''
@@ -17,6 +18,7 @@ class ArticleInfo(models.Model):
 		and persist it to the database
 		'''
 		self.published_on = timezone.now()
+		self.status = 'published'
 		self.save()
 
 	def __str__(self):

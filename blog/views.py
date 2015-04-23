@@ -8,12 +8,12 @@ def article_list(request):
 	'''
 	Querying the db to get articles that have been published,
 	ordering them by published most recently and storing it 
-	in each variable.
+	in each variable
 	'''
 	CodeArticles = CodePost.objects.filter(published_on__lte=timezone.now()).order_by('published_on')
 	DesignArticles = DesignPost.objects.filter(published_on__lte=timezone.now()).order_by('published_on')
 
-	'''
+	'''1
 	Takes request and returns method render
 	to put together article_list template
 	'''
@@ -24,10 +24,7 @@ def CodeArticle(request, CodePost_id):
 	Defines a variable to store a single article.
 	This is used in the template for CodePost details.
 	'''
-	# try:
 	CodeArticle = CodePost.objects.get(pk= CodePost_id)
-	# except CodePost.DoesNotExist:
-		# raise Http404
 	return render(request, 'blog/CodeArticle.html', {'CodeArticle': CodeArticle})
 
 def DesignArticle(request, DesignPost_id):
