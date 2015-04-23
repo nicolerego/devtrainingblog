@@ -4,19 +4,20 @@
 	<title>Developer Blog</title>
 </head>
 <body>
-	<h2>Article List</h2>
-	<h3>Category: Code</h3>
+	<h2>Developer Blog</h2>
+	<h3>Articles</h3>
+	<h4>Category: Code</h4>
 	{% for CodeArticle in CodeArticles %}
 		<div>
-			<h3><a href="{% url 'CodePostDetails' CodeArticle.id %}">{{ CodeArticle.title }}</a></h3>
+			<h4><a href="{% url 'CodePostDetails' CodeArticle.id %}">{{ CodeArticle.title }}</a></h4>
 			<p> Published {{ CodeArticle.published_on }}</p>
 			<p> {{ CodeArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
 		</div>
 	{% endfor %}
-	<h3>Category: Design</h3>
+	<h4>Category: Design</h4>
 	{% for DesignArticle in DesignArticles %}
 		<div>
-			<h3><a href="{% url 'DesignPostDetails' DesignArticle.id %}">{{ DesignArticle.title }}</a></h3>
+			<h4><a href="{% url 'DesignPostDetails' DesignArticle.id %}">{{ DesignArticle.title }}</a></h4>
 			<p> Published {{ DesignArticle.published_on }}</p>
 			<p> {{ DesignArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
 		</div>

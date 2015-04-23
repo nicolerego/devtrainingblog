@@ -45,7 +45,7 @@ class DesignPost(ArticleInfo):
 	ArticleInfo. DesignPosts allow for an image to be uploaded/
 	added to the article.
 	'''
-	photo = models.ImageField(upload_to="images/", blank=True, null=True)
+	photo = models.ImageField(upload_to="static/blog/images", blank=True, null=True)
 
 
 # class Comment(models.Model):

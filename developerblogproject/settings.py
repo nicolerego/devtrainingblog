@@ -36,8 +36,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.comments',
     'blog',
 )
+
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -82,3 +86,12 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'blog', "static"),
+)
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+MEDIA_ROOT= os.path.join(PROJECT_ROOT)
+MEDIA_URL = '/images/'

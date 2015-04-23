@@ -1,3 +1,5 @@
+{% load staticfiles %}
+{% load comments %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,8 @@
 	<h2>{{ DesignArticle.title }}</h2>
 	<h4>Published {{ DesignArticle.published_on }}</h4>
 	<p>{{ DesignArticle.text|linebreaks }}</p>
-	<!-- Will need to include photo in full article -->
+	<p><img src="{{ DesignArticle.photo.url }}"/></p>
+	{% render_comment_list for DesignArticle %}
+	{% render_comment_form for DesignArticle %}
 </body>
 </html>
