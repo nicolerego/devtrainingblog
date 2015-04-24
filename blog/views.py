@@ -10,8 +10,8 @@ def article_list(request):
 	ordering them by published most recently and storing it 
 	in each variable
 	'''
-	CodeArticles = CodePost.objects.filter(published_on__lte=timezone.now()).order_by('published_on')
-	DesignArticles = DesignPost.objects.filter(published_on__lte=timezone.now()).order_by('published_on')
+	CodeArticles = CodePost.objects.filter(published_on__lte=timezone.now()).order_by('-published_on')
+	DesignArticles = DesignPost.objects.filter(published_on__lte=timezone.now()).order_by('-published_on')
 
 	'''1
 	Takes request and returns method render
