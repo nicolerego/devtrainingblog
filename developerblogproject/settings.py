@@ -1,21 +1,13 @@
 """
 Django settings for developerblogproject project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from os.path import join, dirname, abspath, basename, normpath
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
+# Quick-start development settings 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'c6i3u7dlkya!r2f3moskc#7&=o(5h7m!2kyyxrjixgh$ue)n8^'
 
@@ -26,9 +18,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,10 +47,7 @@ ROOT_URLCONF = 'developerblogproject.urls'
 
 WSGI_APPLICATION = 'developerblogproject.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,8 +56,6 @@ DATABASES = {
 }
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -82,16 +67,41 @@ USE_L10N = True
 USE_TZ = False
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+# Static Files
 STATIC_URL = '/static/'
-# STATIC_ROOT = '/static/'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'blog', "static"),
 )
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+MEDIA_ROOT= os.path.join(BASE_DIR)
 
-MEDIA_ROOT= os.path.join(PROJECT_ROOT)
 MEDIA_URL = '/images/'
+
+# Setting up logging for codepublish and design publish commands
+__LOGGING_DIR_PREFIX =join(BASE_DIR, 'logs')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'main_formatter' :{
+            'format': '%(asctime)s - %(levelname)s %(message)s',
+        },
+    },
+    'handlers': {
+        'publishlogfile': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': join(__LOGGING_DIR_PREFIX, 'publishinfo.log'),
+            'formatter': 'main_formatter',
+        },
+    },
+    'loggers': {
+        'django.blog': {
+            'handlers': ['publishlogfile'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
