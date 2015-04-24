@@ -1,11 +1,28 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Developer Blog</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
 <body>
 	<h2>Developer Blog</h2>
-	<h3>Articles</h3>
+	<h3>All Articles</h3>
+	{% for AllArticle in AllArticles %}
+		<div>
+			{% if AllArticle.category = 'Code' %}
+				<h4><a href="{% url 'CodePostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
+			{% else %}
+				<h4><a href="{% url 'DesignPostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
+			{% endif %}
+			<p> Published {{ AllArticle.published_on.date }}</p>
+			<p> {{ AllArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
+		</div>
+	{% endfor %}
+
+<!-- 
 	<h4>Category: Code</h4>
 	{% for CodeArticle in CodeArticles %}
 		<div>
@@ -21,6 +38,6 @@
 			<p> Published {{ DesignArticle.published_on }}</p>
 			<p> {{ DesignArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
 		</div>
-	{% endfor %}
+	{% endfor %} -->
 </body>
 </html>
