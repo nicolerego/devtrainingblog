@@ -2,6 +2,9 @@ from django.core.management.base import BaseCommand, CommandError
 from blog.models import DesignPost
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
+import logging
+
+logger = logging.getLogger('django.blog')
 
 class Command(BaseCommand):
 	arg = '<DesignPost_id DesignPost_id>'
@@ -19,5 +22,6 @@ class Command(BaseCommand):
 					article.save()
 					self.stdout.write('Successfully published this article')
 			except DesignPost.DoesNotExist:
+                logger.info("The article requested does not exist")
+				
 				raise CommandError ('That article does not exist')
-				# Add logging
