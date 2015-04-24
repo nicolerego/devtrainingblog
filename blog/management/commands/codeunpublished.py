@@ -2,9 +2,15 @@ from django.core.management.base import BaseCommand, CommandError
 from blog.models import CodePost
 
 class Command(BaseCommand):
+	"""
+	Creating custom command to display unpublished articles and their id
+	"""
 	help = 'Custom Django admin command to display unpublished code posts'
 
 	def handle(self, *arg, **options):
+		"""
+        Searches for unpublished posts and returns their title and id if found 
+        """
 		articles = CodePost.objects.filter(status="unpublished")
 		count = len(articles)
 		for article in articles:
