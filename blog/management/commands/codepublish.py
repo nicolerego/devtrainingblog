@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from blog.models import CodePost
 from django.utils import timezone
-from datetime import datetime
 from django.core.exceptions import ObjectDoesNotExist
 
 class Command(BaseCommand):
@@ -21,5 +20,6 @@ class Command(BaseCommand):
 					self.stdout.write('Successfully published this article')
 			except CodePost.DoesNotExist:
 				raise CommandError ('That article does not exist')
+				# Add logging
 
 			

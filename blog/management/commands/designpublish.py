@@ -8,14 +8,16 @@ class Command(BaseCommand):
 	help = 'Custom Django admin command to publish a design article for blog'
 
 	def handle(self, *args, **options):
-		# Needs to handle if article has already been published
 		for DesignPost_id in args:
 			try:
 				article = DesignPost.objects.get(pk=int(DesignPost_id))
-				article.published_on  = timezone.now()
+				if article.status == 'published':
+					self.stdout.write('This article was already published')
+				else:
+					article.published_on  = timezone.now()
+					article.status = 'published'
+					article.save()
+					self.stdout.write('Successfully published this article')
 			except DesignPost.DoesNotExist:
 				raise CommandError ('That article does not exist')
-
-			article.save()
-
-			self.stdout.write('Successfully published this article')
+				# Add logging
