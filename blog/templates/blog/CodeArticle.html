@@ -1,23 +1,41 @@
+{% load staticfiles %}
 {% load comments %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Developer Blog | {{ CodeArticle.title }}</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>{{ CodeArticle.title }}</h2>
-	<h4>Published {{ CodeArticle.published_on }}</h4>
-	<p>{{ CodeArticle.text|linebreaks }}</p>
-	<p> {{ CodeArticle.description }} </br>
-	Check out a demo <a href="http://{{ CodeArticle.link }}" target="_blank">here</a></p>
-	{% render_comment_list for CodeArticle %}
-	{% render_comment_form for CodeArticle %}
-	
-	<h3>Related Articles</h3>
-	{% for CodeRelated in CodeRelateds %}
-		<h3><a href="{% url 'CodePostDetails' CodeRelated.id %}">{{ CodeRelated.category|upper}} | {{ CodeRelated.title }}</a></h3>
-		<p>{{ CodeRelated.text|safe|truncatewords:"20"|linebreaks }}</p>
-	{% endfor %}
+	<nav>
+	  	<ul>
+	  		<li>Developer Blog</li>
+	  		<li><a href="/">Home</a></li>
+	  	</ul>
+	</nav>
+	<div class="container">
+		<h2>{{ CodeArticle.title }}</h2>
+		<h4>Published {{ CodeArticle.published_on.date }}</h4>
+		<p>{{ CodeArticle.text|linebreaks }}</p>
+		<p> {{ CodeArticle.description }} </br>
+		Check out a demo <a href="http://{{ CodeArticle.link }}" target="_blank">here</a></p>
+		
+		<div class="container comments">
+			{% render_comment_list for CodeArticle %}
+			{% render_comment_form for CodeArticle %}
+		</div>
+		
+		<h3>Related Articles</h3>
+		{% for CodeRelated in CodeRelateds %}
+			<h3><a href="{% url 'CodePostDetails' CodeRelated.id %}">{{ CodeRelated.category|upper}} | {{ CodeRelated.title }}</a></h3>
+			<p>{{ CodeRelated.text|safe|truncatewords:"20"|linebreaks }}</p>
+		{% endfor %}
+	</div>
 
 </body>
 </html>

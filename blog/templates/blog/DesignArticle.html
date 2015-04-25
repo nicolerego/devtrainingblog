@@ -4,20 +4,41 @@
 <html>
 <head>
 	<title>Developer Blog | {{ DesignArticle.title }}</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>{{ DesignArticle.title }}</h2>
-	<h4>Published {{ DesignArticle.published_on }}</h4>
-	<p>{{ DesignArticle.text|linebreaks }}</p>
-	<p><img src="{{ DesignArticle.photo.url }}"/></p>
-	{% render_comment_list for DesignArticle %}
-	{% render_comment_form for DesignArticle %}
-
-	<h3>Related Articles</h3>
-	{% for DesignRelated in DesignRelateds %}
-		<h3><a href="{% url 'DesignPostDetails' DesignRelated.id %}">{{ DesignRelated.category|upper}} | {{ DesignRelated.title }}</a></h3>
-		<p>{{ DesignRelated.text|safe|truncatewords:"20"|linebreaks }}</p>
-	{% endfor %}
-
+	<nav>
+	 	<ul>
+	  		<li>Developer Blog</li>
+	  		<li><a href="/">Home</a></li>
+	  	</ul>
+	</nav>
+	<div class="container design">
+		<div class="row">
+			<div class="col-md-8">
+				<h2>{{ DesignArticle.title }}</h2>
+				<h4>Published {{ DesignArticle.published_on.date }}</h4>
+				<p><img src="{{ DesignArticle.photo.url }}"/>{{ DesignArticle.text|linebreaks }}</p>
+				<!-- <p><img src="{{ DesignArticle.photo.url }}"/></p> -->
+				
+				<div class="container comments">
+					{% render_comment_list for DesignArticle %}
+					{% render_comment_form for DesignArticle %}
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h3 class="title">Related Articles</h3>
+				{% for DesignRelated in DesignRelateds %}
+					<h3><a href="{% url 'DesignPostDetails' DesignRelated.id %}">{{ DesignRelated.category|upper}} | {{ DesignRelated.title }}</a></h3>
+					<p>{{ DesignRelated.text|safe|truncatewords:"20"|linebreaks }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 </body>
 </html>

@@ -6,38 +6,40 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>Developer Blog</h2>
-	<h3>All Articles</h3>
-	{% for AllArticle in AllArticles %}
-		<div>
-			{% if AllArticle.category = 'Code' %}
-				<h4><a href="{% url 'CodePostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
-			{% else %}
-				<h4><a href="{% url 'DesignPostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
-			{% endif %}
-			<p> Published {{ AllArticle.published_on.date }}</p>
-			<p> {{ AllArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
+	<nav>
+		<ul>
+			<li>Developer Blog</li>
+			<li><a href="/">Home</a></li>
+		</ul>
+	</nav>
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Developer Blog <small>Tofu listicle lomo drinking vinegar. </small></h1>
 		</div>
-	{% endfor %}
-
+	</div>
+	<div class=container>		
 <!-- 
-	<h4>Category: Code</h4>
-	{% for CodeArticle in CodeArticles %}
-		<div>
-			<h4><a href="{% url 'CodePostDetails' CodeArticle.id %}">{{ CodeArticle.title }}</a></h4>
-			<p> Published {{ CodeArticle.published_on }}</p>
-			<p> {{ CodeArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
+		<div class="page-header">
+		  <h1>Developer Blog <small>Tofu listicle lomo drinking vinegar. </small></h1>
 		</div>
-	{% endfor %}
-	<h4>Category: Design</h4>
-	{% for DesignArticle in DesignArticles %}
-		<div>
-			<h4><a href="{% url 'DesignPostDetails' DesignArticle.id %}">{{ DesignArticle.title }}</a></h4>
-			<p> Published {{ DesignArticle.published_on }}</p>
-			<p> {{ DesignArticle.text|safe|truncatewords:"50"|linebreaks }}</p>
+ -->
+ 		<div class="row home">
+			{% for AllArticle in AllArticles %}
+				<div class="col-md-4 articles">
+					{% if AllArticle.category = 'Code' %}
+						<h4><a href="{% url 'CodePostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
+					{% else %}
+						<h4><a href="{% url 'DesignPostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
+					{% endif %}
+					<p> Published {{ AllArticle.published_on.date }}</br></br>{{ AllArticle.text|safe|truncatewords:"50" }}</p>
+				</div>
+			{% endfor %}
 		</div>
-	{% endfor %} -->
+	</div>
 </body>
 </html>
