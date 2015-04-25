@@ -12,5 +12,12 @@
 	<p><img src="{{ DesignArticle.photo.url }}"/></p>
 	{% render_comment_list for DesignArticle %}
 	{% render_comment_form for DesignArticle %}
+
+	<h3>Related Articles</h3>
+	{% for DesignRelated in DesignRelateds %}
+		<h3><a href="{% url 'DesignPostDetails' DesignRelated.id %}">{{ DesignRelated.category|upper}} | {{ DesignRelated.title }}</a></h3>
+		<p>{{ DesignRelated.text|safe|truncatewords:"20"|linebreaks }}</p>
+	{% endfor %}
+
 </body>
 </html>

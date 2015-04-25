@@ -12,5 +12,12 @@
 	Check out a demo <a href="http://{{ CodeArticle.link }}" target="_blank">here</a></p>
 	{% render_comment_list for CodeArticle %}
 	{% render_comment_form for CodeArticle %}
+	
+	<h3>Related Articles</h3>
+	{% for CodeRelated in CodeRelateds %}
+		<h3><a href="{% url 'CodePostDetails' CodeRelated.id %}">{{ CodeRelated.category|upper}} | {{ CodeRelated.title }}</a></h3>
+		<p>{{ CodeRelated.text|safe|truncatewords:"20"|linebreaks }}</p>
+	{% endfor %}
+
 </body>
 </html>

@@ -25,19 +25,27 @@ def article_list(request):
 	"""
 	# return render(request, 'blog/article_list.html', {'CodeArticles': CodeArticles, 'DesignArticles': DesignArticles })
 	return render(request, 'blog/article_list.html', {'AllArticles': AllArticles})
+
 def CodeArticle(request, CodePost_id):
 	"""
 	Defines a variable to store a single article.
 	This is used in the template for CodePost details.
+	Defines a variable to store related articles, excludes
+	displaying current article.
 	"""
 	CodeArticle = CodePost.objects.get(pk= CodePost_id)
-	# CodeRelated = CodePost.objects.all().Random().sample(range(0,last),2) 
-	return render(request, 'blog/CodeArticle.html', {'CodeArticle': CodeArticle})
+	CodeRelateds = CodePost.objects.all().order_by('id').exclude(id = CodeArticle.id)[:3]
+	
+	return render(request, 'blog/CodeArticle.html', {'CodeArticle': CodeArticle, 'CodeRelateds': CodeRelateds })
 
 def DesignArticle(request, DesignPost_id):
 	"""
 	Defines a variable to store a single article. 
 	This is used in the template for the DesignPost details.
+	Defines a variable to store related articles, excludes
+	displaying curent article.
 	"""
 	DesignArticle = DesignPost.objects.get(pk= DesignPost_id)
-	return render(request, 'blog/DesignArticle.html', {'DesignArticle': DesignArticle})
+	DesignRelateds = DesignPost.objects.all().order_by('id').exclude(id = DesignArticle.id)[:3]
+
+	return render(request, 'blog/DesignArticle.html', {'DesignArticle': DesignArticle, 'DesignRelateds': DesignRelateds})
