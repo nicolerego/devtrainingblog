@@ -13,21 +13,19 @@
 <body>
 	<nav>
 		<ul>
-			<li>Developer Blog</li>
-			<li><a href="/">Home</a></li>
+			<li><a href="/">Developer Blog</a></li>
 		</ul>
 	</nav>
-	<div class="jumbotron">
+	<!-- <div class="jumbotron">
 		<div class="container">
 			<h1>Developer Blog <small>Tofu listicle lomo drinking vinegar. </small></h1>
 		</div>
-	</div>
+	</div> -->
 	<div class=container>		
-<!-- 
 		<div class="page-header">
 		  <h1>Developer Blog <small>Tofu listicle lomo drinking vinegar. </small></h1>
 		</div>
- -->
+
  		<div class="row home">
 			{% for AllArticle in AllArticles %}
 				<div class="col-md-4 articles">
@@ -36,7 +34,7 @@
 					{% else %}
 						<h4><a href="{% url 'DesignPostDetails' AllArticle.id %}">{{ AllArticle.category|upper }} | {{ AllArticle.title }}</a></h4>
 					{% endif %}
-					<p> Published {{ AllArticle.published_on.date }}</br></br>{{ AllArticle.text|safe|truncatewords:"50" }}</p>
+					<p> Published {{ AllArticle.published_on.date }}</br></br>{{ AllArticle.text|safe|truncatewords:"40" }}</p>
 				</div>
 			{% endfor %}
 		</div>

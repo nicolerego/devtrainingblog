@@ -14,8 +14,7 @@
 <body>
 	<nav>
 	 	<ul>
-	  		<li>Developer Blog</li>
-	  		<li><a href="/">Home</a></li>
+	  		<li><a href="/">Developer Blog</a></li>
 	  	</ul>
 	</nav>
 	<div class="container design">
@@ -24,9 +23,9 @@
 				<h2>{{ DesignArticle.title }}</h2>
 				<h4>Published {{ DesignArticle.published_on.date }}</h4>
 				<p><img src="{{ DesignArticle.photo.url }}"/>{{ DesignArticle.text|linebreaks }}</p>
-				<!-- <p><img src="{{ DesignArticle.photo.url }}"/></p> -->
 				
 				<div class="container comments">
+					<h3>Leave A Comment</h3>
 					{% render_comment_list for DesignArticle %}
 					{% render_comment_form for DesignArticle %}
 				</div>
