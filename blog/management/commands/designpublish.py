@@ -30,6 +30,6 @@ class Command(BaseCommand):
 					article.save()
 					self.stdout.write('Successfully published this article')
 			except DesignPost.DoesNotExist:
-                logger.info("The article requested does not exist")
+				logger.info("The article requested does not exist")
 				
 				raise CommandError ('That article does not exist')
