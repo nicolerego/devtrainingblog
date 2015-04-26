@@ -39,6 +39,7 @@ class CodePost(ArticleInfo):
 	"""
 	link = models.TextField()
 	description = models.TextField()
+	category = 'Code'
 
 
 class DesignPost(ArticleInfo):
@@ -48,3 +49,4 @@ class DesignPost(ArticleInfo):
 	added to the article.
 	"""
 	photo = models.ImageField(upload_to="static/blog/images", blank=True, null=True)
+	category = 'Design'

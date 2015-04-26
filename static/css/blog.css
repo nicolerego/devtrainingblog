@@ -1,0 +1,163 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600);
+
+/*===================================== GENERAL*/
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 100;
+	background:#fcfcfc;
+}
+
+/*===================================== NAV*/
+nav {
+	height:auto;
+	overflow: auto;
+	text-transform: uppercase;
+	font-size:150%;
+	padding:20px;
+}
+
+nav ul li {
+	float:left;
+	width:auto;
+	list-style-type: none;
+	margin-right:20px;
+}
+
+nav ul li a{
+	text-decoration: none;
+	color:#222222;
+}
+
+nav ul li a:hover {
+	text-decoration: none;
+	color:#ccc;
+}
+
+
+/*===================================== HOME*/
+.col-md-4.articles{
+  height: 360px !important;
+  margin-bottom: 20px;
+  margin-top:20px;
+}
+
+.col-md-4.articles p {
+	background: #fff;
+	padding:20px;
+	min-height:300px;
+	font-size: 12pt;
+}
+
+.col-md-4.articles h4 {
+	padding:20px;
+	background: #6017AE;
+	margin-bottom: -5px;
+	margin-top:40px;
+}
+
+h1, h1 small {font-weight: 100}
+h4 a {color:#fff; font-weight: 100;}
+
+h4 a:hover {
+	color:#ccc;
+	text-decoration: none;
+}
+
+.home { margin-bottom: 80px; }
+
+/*===================================== ARTICLES*/
+.design, .code {
+	background: #fff;
+	padding:20px;
+	margin-top:30px;
+	margin-bottom: 80px;
+}
+
+.design h4, .code h4 { margin-bottom: 40px; }
+.design h2, .design h4 {font-weight: 100;}
+.code h2, .code h4 {font-weight: 100;}
+
+h3.title {
+	font-weight: 400;
+	text-transform:uppercase;
+}
+
+h3 a {
+	color:#222222;
+	text-decoration: none;
+	font-weight: 100;
+	font-size:14pt;
+}
+h3 a:hover {
+	color:#ccc;
+	text-decoration: none;
+}
+
+.design img {
+	float:left;
+	margin-right:20px;
+	margin-bottom: 20px;
+	width:500px;
+	max-width: 100%;
+}
+
+.comments {
+	clear:both;
+	width:100%;
+	float:left;
+	margin-top:40px;
+	margin-bottom: 60px;
+}
+
+.design p, .code p { font-size: 12pt; }
+
+.code p.demo {
+	font-size:150%;
+	margin-top:20px;
+}
+
+.demo a {
+	text-decoration: none;
+	color:#6017AE;
+	font-weight: bolder;
+}
+
+/*===================================== FORM*/
+label {
+  font-weight: 100;
+  display: inherit;
+}
+
+input.submit-post, input.submit-preview{
+	background-color:#6017AE;
+	color:white;
+	font-size: 110%;
+	text-transform: uppercase;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bolder;
+	margin-right:5px;
+	padding:5px 10px;
+	border:none;
+}
+
+/*===================================== RESPONSIVE */
+@media (min-width: 992px) {
+	.col-md-8 {
+	 	padding-left: 40px !important;
+	 	padding-right: 40px !important;
+	 	border-right: solid 1px #ccc !important;
+	}
+	.col-md-4 {
+ 		padding-left: 40px !important;
+	}
+
+}
+
+@media (max-width: 992px) {
+	.col-md-4.articles p {
+		min-height: 1px !important;
+	}
+	.col-md-4.articles {
+		height:auto !important;
+	}
+}
